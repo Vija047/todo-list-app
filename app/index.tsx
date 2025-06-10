@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  View, 
-  Text, 
-  FlatList, 
-  StyleSheet, 
-  TextInput, 
-  TouchableOpacity, 
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
   Alert,
   StatusBar,
   Dimensions
@@ -72,118 +72,124 @@ export default function HomeScreen() {
   };
 
   const renderItem = ({ item, index }: { item: Task; index: number }) => (
-    <View style={[styles.taskCard, { marginTop: index === 0 ? 0 : 12 }]}>
-      {editingId === item.id ? (
-        <View style={styles.editContainer}>
-          <TextInput
-            value={editedText}
-            onChangeText={setEditedText}
-            style={styles.editInput}
-            placeholder="Update your task..."
-            placeholderTextColor="#A0A0A0"
-            multiline
-            autoFocus
-          />
-          <View style={styles.editActions}>
-            <TouchableOpacity 
-              onPress={() => {
-                setEditingId(null);
-                setEditedText('');
-              }} 
-              style={[styles.actionButton, styles.cancelButton]}
-            >
-              <Ionicons name="close" size={18} color="#FF6B6B" />
-            </TouchableOpacity>
-            <TouchableOpacity 
-              onPress={() => submitEdit(item.id)} 
-              style={[styles.actionButton, styles.saveButton]}
-            >
-              <Ionicons name="checkmark" size={18} color="#4CAF50" />
-            </TouchableOpacity>
-          </View>
-        </View>
-      ) : (
-        <View style={styles.taskContent}>
-          <View style={styles.taskInfo}>
-            <View style={styles.taskHeader}>
-              <View style={[styles.priorityDot, { backgroundColor: getPriorityColor(item.priority) }]} />
-              <Text style={[
-                styles.taskText, 
-                item.completed && styles.completedText
-              ]}>
-                {item.text}
-              </Text>
-            </View>
-            {item.priority && (
-              <View style={[styles.priorityBadge, { backgroundColor: getPriorityColor(item.priority) + '20' }]}>
-                <Text style={[styles.priorityText, { color: getPriorityColor(item.priority) }]}>
-                  {item.priority.toUpperCase()}
-                </Text>
-              </View>
-            )}
-          </View>
-          <TouchableOpacity 
-            onPress={() => handleEdit(item)} 
-            style={styles.editButton}
-            activeOpacity={0.7}
-          >
-            <Ionicons name="create-outline" size={20} color="#6C7CE7" />
-          </TouchableOpacity>
-        </View>
-      )}
+    <View style= { [styles.taskCard, { marginTop: index === 0 ? 0 : 12 }]} >
+      { editingId === item.id ? (
+        <View style= { styles.editContainer } >
+    <TextInput
+            value={ editedText }
+  onChangeText = { setEditedText }
+  style = { styles.editInput }
+  placeholder = "Update your task..."
+  placeholderTextColor = "#A0A0A0"
+  multiline
+  autoFocus
+    />
+    <View style={ styles.editActions }>
+      <TouchableOpacity 
+              onPress={
+    () => {
+      setEditingId(null);
+      setEditedText('');
+    }
+  }
+  style = { [styles.actionButton, styles.cancelButton]}
+    >
+    <Ionicons name="close" size = { 18} color = "#FF6B6B" />
+      </TouchableOpacity>
+      < TouchableOpacity
+  onPress = {() => submitEdit(item.id)
+}
+style = { [styles.actionButton, styles.saveButton]}
+  >
+  <Ionicons name="checkmark" size = { 18} color = "#4CAF50" />
+    </TouchableOpacity>
     </View>
+    </View>
+      ) : (
+  <View style= { styles.taskContent } >
+  <View style={ styles.taskInfo }>
+    <View style={ styles.taskHeader }>
+      <View style={ [styles.priorityDot, { backgroundColor: getPriorityColor(item.priority) }] } />
+        < Text style = {
+          [
+          styles.taskText,
+          item.completed && styles.completedText
+          ]} >
+          { item.text }
+          </Text>
+          </View>
+{
+  item.priority && (
+    <View style={ [styles.priorityBadge, { backgroundColor: getPriorityColor(item.priority) + '20' }] }>
+      <Text style={ [styles.priorityText, { color: getPriorityColor(item.priority) }] }>
+        { item.priority.toUpperCase() }
+        </Text>
+        </View>
+            )
+}
+</View>
+  < TouchableOpacity
+onPress = {() => handleEdit(item)}
+style = { styles.editButton }
+activeOpacity = { 0.7}
+  >
+  <Ionicons name="create-outline" size = { 20} color = "#6C7CE7" />
+    </TouchableOpacity>
+    </View>
+      )}
+</View>
   );
 
-  const completedTasks = tasks.filter(task => task.completed).length;
-  const totalTasks = tasks.length;
+const completedTasks = tasks.filter(task => task.completed).length;
+const totalTasks = tasks.length;
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1A2E" />
-      
-      {/* Header Section */}
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Text style={styles.greeting}>Good day! 👋</Text>
-          <Text style={styles.title}>My Tasks</Text>
-          
-          <View style={styles.statsContainer}>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{totalTasks}</Text>
-              <Text style={styles.statLabel}>Total</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{completedTasks}</Text>
-              <Text style={styles.statLabel}>Done</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{totalTasks - completedTasks}</Text>
-              <Text style={styles.statLabel}>Pending</Text>
-            </View>
-          </View>
+return (
+  <View style= { styles.container } >
+  <StatusBar barStyle="light-content" backgroundColor = "#1A1A2E" />
+
+    {/* Header Section */ }
+    < View style = { styles.header } >
+      <View style={ styles.headerContent }>
+        <Text style={ styles.greeting }> Good day! 👋</Text>
+          < Text style = { styles.title } > My Tasks </Text>
+
+            < View style = { styles.statsContainer } >
+              <View style={ styles.statCard }>
+                <Text style={ styles.statNumber }> { totalTasks } </Text>
+                  < Text style = { styles.statLabel } > Total </Text>
+                    </View>
+                    < View style = { styles.statCard } >
+                      <Text style={ styles.statNumber }> { completedTasks } </Text>
+                        < Text style = { styles.statLabel } > Done </Text>
+                          </View>
+                          < View style = { styles.statCard } >
+                            <Text style={ styles.statNumber }> { totalTasks - completedTasks}</Text>
+                              < Text style = { styles.statLabel } > Pending </Text>
+                                </View>
+                                </View>
+                                </View>
+                                </View>
+
+{/* Tasks Section */ }
+<View style={ styles.tasksContainer }>
+  <Text style={ styles.sectionTitle }> Your Tasks </Text>
+
+    < FlatList
+data = { tasks }
+keyExtractor = {(item) => item.id}
+renderItem = { renderItem }
+showsVerticalScrollIndicator = { false}
+contentContainerStyle = { styles.listContainer }
+ListEmptyComponent = {
+            < View style = { styles.emptyContainer } >
+  <Ionicons name="checkmark-circle-outline" size = { 80} color = "#E0E0E0" />
+    <Text style={ styles.emptyTitle }> No tasks yet </Text>
+      < Text style = { styles.emptySubtitle } > Add your first task to get started </Text>
         </View>
-      </View>
-
-      {/* Tasks Section */}
-      <View style={styles.tasksContainer}>
-        <Text style={styles.sectionTitle}>Your Tasks</Text>
-        
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.listContainer}
-          ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <Ionicons name="checkmark-circle-outline" size={80} color="#E0E0E0" />
-              <Text style={styles.emptyTitle}>No tasks yet</Text>
-              <Text style={styles.emptySubtitle}>Add your first task to get started</Text>
-            </View>
           }
         />
-      </View>
-    </View>
+  </View>
+  </View>
   );
 }
 

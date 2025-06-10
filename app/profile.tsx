@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient'; // Optional: for gradient backgrounds
 
@@ -26,92 +26,95 @@ export default function ProfileScreen() {
   const pendingCount = taskCount - completedCount;
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Header Section */}
-      <View style={styles.header}>
-        <View style={styles.avatarContainer}>
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>U</Text>
-          </View>
-          <View style={styles.onlineIndicator} />
-        </View>
-        <Text style={styles.title}>Your Profile</Text>
-        <Text style={styles.subtitle}>Task Management Overview</Text>
-      </View>
+    <ScrollView style= { styles.container } showsVerticalScrollIndicator = { false} >
+      {/* Header Section */ }
+      < View style = { styles.header } >
+        <View style={ styles.avatarContainer }>
+          <View style={ styles.avatar }>
+            <Text style={ styles.avatarText }> U </Text>
+              </View>
+              < View style = { styles.onlineIndicator } />
+                </View>
+                < Text style = { styles.title } > Your Profile </Text>
+                  < Text style = { styles.subtitle } > Task Management Overview </Text>
+                    </View>
 
-      {/* Stats Cards Container */}
-      <View style={styles.statsContainer}>
-        {/* Total Tasks Card */}
-        <View style={[styles.statCard, styles.totalCard]}>
-          <View style={styles.statIconContainer}>
-            <Text style={styles.statIcon}>📋</Text>
+  {/* Stats Cards Container */ }
+  <View style={ styles.statsContainer }>
+    {/* Total Tasks Card */ }
+    < View style = { [styles.statCard, styles.totalCard]} >
+      <View style={ styles.statIconContainer }>
+        <Text style={ styles.statIcon }>📋</Text>
           </View>
-          <View style={styles.statContent}>
-            <Text style={styles.statNumber}>{taskCount}</Text>
-            <Text style={styles.statLabel}>Total Tasks</Text>
-          </View>
-        </View>
+          < View style = { styles.statContent } >
+            <Text style={ styles.statNumber }> { taskCount } </Text>
+              < Text style = { styles.statLabel } > Total Tasks </Text>
+                </View>
+                </View>
 
-        {/* Completed Tasks Card */}
-        <View style={[styles.statCard, styles.completedCard]}>
-          <View style={styles.statIconContainer}>
-            <Text style={styles.statIcon}>✅</Text>
-          </View>
-          <View style={styles.statContent}>
-            <Text style={styles.statNumber}>{completedCount}</Text>
-            <Text style={styles.statLabel}>Completed</Text>
-          </View>
+  {/* Completed Tasks Card */ }
+  <View style={ [styles.statCard, styles.completedCard] }>
+    <View style={ styles.statIconContainer }>
+      <Text style={ styles.statIcon }>✅</Text>
         </View>
+        < View style = { styles.statContent } >
+          <Text style={ styles.statNumber }> { completedCount } </Text>
+            < Text style = { styles.statLabel } > Completed </Text>
+              </View>
+              </View>
 
-        {/* Pending Tasks Card */}
-        <View style={[styles.statCard, styles.pendingCard]}>
-          <View style={styles.statIconContainer}>
-            <Text style={styles.statIcon}>⏳</Text>
-          </View>
-          <View style={styles.statContent}>
-            <Text style={styles.statNumber}>{pendingCount}</Text>
-            <Text style={styles.statLabel}>Pending</Text>
-          </View>
+  {/* Pending Tasks Card */ }
+  <View style={ [styles.statCard, styles.pendingCard] }>
+    <View style={ styles.statIconContainer }>
+      <Text style={ styles.statIcon }>⏳</Text>
         </View>
-      </View>
+        < View style = { styles.statContent } >
+          <Text style={ styles.statNumber }> { pendingCount } </Text>
+            < Text style = { styles.statLabel } > Pending </Text>
+              </View>
+              </View>
+              </View>
 
-      {/* Progress Section */}
-      <View style={styles.progressSection}>
-        <Text style={styles.progressTitle}>Completion Rate</Text>
-        <View style={styles.progressBarContainer}>
-          <View style={styles.progressBarBackground}>
-            <View 
-              style={[
-                styles.progressBarFill, 
-                { width: `${completionRate}%` }
-              ]} 
+  {/* Progress Section */ }
+  <View style={ styles.progressSection }>
+    <Text style={ styles.progressTitle }> Completion Rate </Text>
+      < View style = { styles.progressBarContainer } >
+        <View style={ styles.progressBarBackground }>
+          <View 
+              style={
+    [
+      styles.progressBarFill,
+      { width: `${completionRate}%` }
+    ]
+  } 
             />
-          </View>
-          <Text style={styles.progressText}>{completionRate}%</Text>
-        </View>
+    </View>
+    < Text style = { styles.progressText } > { completionRate } % </Text>
+      </View>
       </View>
 
-      {/* Achievement Section */}
-      <View style={styles.achievementSection}>
-        <Text style={styles.achievementTitle}>Quick Stats</Text>
-        <View style={styles.achievementGrid}>
-          <View style={styles.achievementItem}>
-            <Text style={styles.achievementIcon}>🎯</Text>
-            <Text style={styles.achievementText}>Focus Level</Text>
-            <Text style={styles.achievementValue}>
-              {completionRate > 80 ? 'High' : completionRate > 50 ? 'Medium' : 'Low'}
-            </Text>
-          </View>
-          <View style={styles.achievementItem}>
-            <Text style={styles.achievementIcon}>📈</Text>
-            <Text style={styles.achievementText}>Productivity</Text>
-            <Text style={styles.achievementValue}>
-              {completedCount > 10 ? 'Excellent' : completedCount > 5 ? 'Good' : 'Getting Started'}
-            </Text>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+  {/* Achievement Section */ }
+  <View style={ styles.achievementSection }>
+    <Text style={ styles.achievementTitle }> Quick Stats </Text>
+      < View style = { styles.achievementGrid } >
+        <View style={ styles.achievementItem }>
+          <Text style={ styles.achievementIcon }>🎯</Text>
+            < Text style = { styles.achievementText } > Focus Level </Text>
+              < Text style = { styles.achievementValue } >
+                { completionRate > 80 ? 'High' : completionRate > 50 ? 'Medium' : 'Low'
+}
+</Text>
+  </View>
+  < View style = { styles.achievementItem } >
+    <Text style={ styles.achievementIcon }>📈</Text>
+      < Text style = { styles.achievementText } > Productivity </Text>
+        < Text style = { styles.achievementValue } >
+          { completedCount > 10 ? 'Excellent' : completedCount > 5 ? 'Good' : 'Getting Started'}
+</Text>
+  </View>
+  </View>
+  </View>
+  </ScrollView>
   );
 }
 

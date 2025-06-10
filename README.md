@@ -1,13 +1,17 @@
 # My Tasks App
 
+# App Screenshot:
+Home :
+![alt text](image.png)
+
+Task:
+![alt text](image-1.png)
+
+profile:
+![alt text](image-2.png)
+
+
 A React Native mobile application for task management with local notifications and priority settings.
-
-## Assignment Details
-- **Company**: AffWorld LLC
-- **Location**: 512 ONYX TOWER 2 DUBAI INTERNET CITY DUBAI 000000
-- **Deadline**: 11/06/2025
-- **Position**: React Native Developer Assignment
-
 ## Project Description
 This mobile application helps users manage their daily tasks with features like task prioritization, local notifications, and data persistence.
 
